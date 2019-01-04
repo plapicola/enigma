@@ -1,4 +1,5 @@
 require_relative 'test_helper'
+require 'date'
 
 class EnigmaTest < Minitest::Test
 
@@ -44,5 +45,18 @@ class EnigmaTest < Minitest::Test
     actual = @enigma.decrypt(encrypted[:encryption], encrypted[:key], "040895")
 
     assert_equal "hello world", actual[:decryption]
+  end
+
+  def test_encrypting__without_key_or_date_uses_random_key_and_current_date
+    encrypted = @enigma.encrypt("hello world")
+    message = encrypted[:encryption]
+    key = encrypted[:key]
+    date = encrypted[:date]
+    todays_date = Date.today.strftime('%m%d%y')
+
+    actual = @enigma.decrypt(message, key, date)
+
+    assert_equal "hello world", actual[:decryption]
+    assert_equal todays_date, encrypted[:date]
   end
 end
