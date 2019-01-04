@@ -67,8 +67,10 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_parse_keys
-    expected = [2, 27, 71, 15]
+    expected_1 = [2, 27, 71, 15]
+    expected_2 = [0, 0, 1, 10]
 
-    assert_equal expected, @enigma.parse_keys("02715")
+    assert_equal expected_1, @enigma.parse_keys("02715")
+    assert_equal expected_2, @enigma.parse_keys("00010")
   end
 end
