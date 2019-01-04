@@ -12,12 +12,12 @@ class CipherTest < Minitest::Test
   end
 
   def test_it_can_translate_words_given_an_offset
-    skip
+    # skip
     assert_equal "bcdef", @cipher.encode("abcde", 1)
   end
 
   def test_translated_words_can_contain_spaces
-    skip
+    # skip
     assert_equal "ifmmpaxpsme", @cipher.encode("hello world", 1)
   end
 
