@@ -30,4 +30,9 @@ class CipherTest < Minitest::Test
     skip
     assert_equal "ifmmpaxpsme?!", @cipher.encode("hello world?!", 1)
   end
+
+  def test_it_can_decode_words_using_an_offset
+    skip
+    assert_equal "hello world?!", @cipher.encode("ifmmpaxpsme?!", 1)
+  end
 end
