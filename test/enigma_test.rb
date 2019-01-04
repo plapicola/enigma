@@ -65,4 +65,10 @@ class EnigmaTest < Minitest::Test
     assert_equal "hello world", actual[:decryption]
     assert_equal todays_date, encrypted[:date]
   end
+
+  def test_it_can_parse_keys
+    expected = [2, 27, 71, 15]
+
+    assert_equal expected, @enigma.parse_keys("02715")
+  end
 end
