@@ -73,4 +73,10 @@ class EnigmaTest < Minitest::Test
     assert_equal expected_1, @enigma.parse_keys("02715")
     assert_equal expected_2, @enigma.parse_keys("00010")
   end
+
+  def test_it_generate_offsets_from_date
+    expected = [1, 0, 2, 5]
+
+    assert_equal expected, @enigma.generate_offsets("040895")
+  end
 end
