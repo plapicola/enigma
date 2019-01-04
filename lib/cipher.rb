@@ -16,4 +16,8 @@ class Cipher
     end.join("")
   end
 
+  def decode(word, offset)
+    encode(word, offset * -1)
+  end
+
 end

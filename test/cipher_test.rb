@@ -27,12 +27,12 @@ class CipherTest < Minitest::Test
   end
 
   def test_only_alphabetical_and_whitespace_is_encoded
-    skip
+    # skip
     assert_equal "ifmmpaxpsme?!", @cipher.encode("hello world?!", 1)
   end
 
   def test_it_can_decode_words_using_an_offset
-    skip
-    assert_equal "hello world?!", @cipher.encode("ifmmpaxpsme?!", 1)
+    # skip
+    assert_equal "hello world?!", @cipher.decode("ifmmpaxpsme?!", 1)
   end
 end
