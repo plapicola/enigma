@@ -13,4 +13,11 @@ class Enigma
     keys.map {|key| key.join("").to_i}
   end
 
+  def generate_offsets(date)
+    squared_value = date.to_i * date.to_i
+    values = squared_value.to_s[-4..-1].split("").map do |number|
+      number.to_i
+    end
+  end
+
 end

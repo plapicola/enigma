@@ -11,6 +11,20 @@ class EnigmaTest < Minitest::Test
     # skip
     assert_instance_of Enigma, @enigma
   end
+  
+  def test_it_can_parse_keys
+    expected_1 = [2, 27, 71, 15]
+    expected_2 = [0, 0, 1, 10]
+
+    assert_equal expected_1, @enigma.parse_keys("02715")
+    assert_equal expected_2, @enigma.parse_keys("00010")
+  end
+
+  def test_it_generate_offsets_from_date
+    expected = [1, 0, 2, 5]
+
+    assert_equal expected, @enigma.generate_offsets("040895")
+  end
 
   def test_it_can_encrypt_a_message_when_given_keys_and_dates
     # skip
@@ -64,19 +78,5 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "hello world", actual[:decryption]
     assert_equal todays_date, encrypted[:date]
-  end
-
-  def test_it_can_parse_keys
-    expected_1 = [2, 27, 71, 15]
-    expected_2 = [0, 0, 1, 10]
-
-    assert_equal expected_1, @enigma.parse_keys("02715")
-    assert_equal expected_2, @enigma.parse_keys("00010")
-  end
-
-  def test_it_generate_offsets_from_date
-    expected = [1, 0, 2, 5]
-
-    assert_equal expected, @enigma.generate_offsets("040895")
   end
 end
