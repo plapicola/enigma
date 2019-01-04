@@ -22,7 +22,7 @@ class CipherTest < Minitest::Test
   end
 
   def test_encoded_words_are_translated_to_lower_case
-    skip
+    # skip
     assert_equal "ifmmpaxpsme", @cipher.encode("HELLO WORLD", 1)
   end
 

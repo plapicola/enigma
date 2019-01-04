@@ -5,7 +5,7 @@ class Cipher
   end
 
   def encode(word, offset)
-    characters = word.split("")
+    characters = word.downcase.split("")
     shifted_set = @character_set.rotate(offset)
     characters.map do |character|
       if @character_set.include?(character)
