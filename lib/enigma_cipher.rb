@@ -6,8 +6,8 @@ class EnigmaCipher < Cipher
     super
   end
 
-  def parse_keys(key)
-    keys = key.split("").each_cons(2)
+  def parse_keys(cipher_key)
+    keys = cipher_key.split("").each_cons(2)
     keys.map {|key| key.join("").to_i}
   end
 
@@ -16,8 +16,8 @@ class EnigmaCipher < Cipher
     (squared_value % 10000).digits.reverse
   end
 
-  def generate_shifts(key, date)
-    keys = parse_keys(key)
+  def generate_shifts(cipher_key, date)
+    keys = parse_keys(cipher_key)
     offsets = generate_offsets(date)
     keys.map.with_index do |key, index|
       key + offsets[index]
@@ -27,8 +27,8 @@ class EnigmaCipher < Cipher
   def encode(word, key, date)
     shifts = generate_shifts(key, date)
     grouped_letters = group_letters_by_shift(word)
-    grouped_letters.each do |key, letters|
-      grouped_letters[key] = super(letters.join(""), shifts[key])
+    grouped_letters.each do |shift, letters|
+      grouped_letters[shift] = super(letters.join(""), shifts[shift])
     end
     reassemble_message(grouped_letters, word.length)
   end
