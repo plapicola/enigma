@@ -93,4 +93,15 @@ class EnigmaTest < Minitest::Test
 
     assert_equal expected, @enigma.crack(message, date)
   end
+
+  def test_it_uses_todays_date_by_default_when_cracking
+    encrypted = @enigma.encrypt("hello world end")
+    message = encrypted[:encryption]
+
+    expected = {decryption: "hello world end",
+                key: encrypted[:key],
+                date: date}
+
+    assert_equal expected, @enigma.crack(message)
+  end
 end
