@@ -21,6 +21,12 @@ class EnigmaTest < Minitest::Test
     refute_equal 0, key.to_i
   end
 
+  def test_it_can_determine_todays_date
+    todays_date = Date.today.strftime('%m%d%y')
+
+    assert_equal todays_date, @enigma.today
+  end
+
   def test_it_can_encrypt_a_message_when_given_keys_and_dates
     # skip
     expected = {
@@ -62,7 +68,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypting__without_key_or_date_uses_random_key_and_current_date
-    skip
+    # skip
     encrypted = @enigma.encrypt("hello world")
     message = encrypted[:encryption]
     key = encrypted[:key]
