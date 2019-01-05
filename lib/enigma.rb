@@ -21,6 +21,9 @@ class Enigma
   end
 
   def random_key
+    key = ""
+    5.times {key += Random.rand(10).to_s}
+    key
   end
 
 end

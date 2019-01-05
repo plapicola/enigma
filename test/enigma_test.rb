@@ -13,6 +13,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_generate_a_key
+    # skip
     key = @enigma.random_key
 
     assert_instance_of String, key
