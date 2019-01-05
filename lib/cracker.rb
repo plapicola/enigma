@@ -17,7 +17,12 @@ class Cracker
   end
 
   def crack(phrase)
-
+    loop do
+      attempt = @cipher.decode(phrase, @current_key, @date)
+      break if attempt[-4..-1] == " end"
+      next_key
+    end
+    @current_key
   end
 
 end
