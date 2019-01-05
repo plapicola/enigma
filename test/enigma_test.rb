@@ -12,6 +12,14 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, @enigma
   end
 
+  def test_it_can_generate_a_key
+    key = @enigma.random_key
+
+    assert_instance_of String, key
+    assert_equal 5, key.length
+    refute_equal 0, key.to_i
+  end
+
   def test_it_can_encrypt_a_message_when_given_keys_and_dates
     # skip
     expected = {
@@ -35,7 +43,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_decrypting_an_encrypted_message_returns_the_original_message
-    skip
+    # skip
     encrypted = @enigma.encrypt("hello world", "02715", "040895")
 
     actual = @enigma.decrypt(encrypted[:encryption], "02715", "040895")
@@ -44,7 +52,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_encrypting_a_message_with_no_given_key_generates_a_new_key
-    skip
+    # skip
     encrypted = @enigma.encrypt("hello world", "040895")
 
     actual = @enigma.decrypt(encrypted[:encryption], encrypted[:key], "040895")
