@@ -58,11 +58,11 @@ class EnigmaTest < Minitest::Test
     assert_equal "hello world", actual[:decryption]
   end
 
-  def test_encrypting_a_message_with_no_given_key_generates_a_new_key
+  def test_encrypting_a_message_with_no_given_date_uses_todays_date
     # skip
-    encrypted = @enigma.encrypt("hello world", "040895")
+    encrypted = @enigma.encrypt("hello world", "02715")
 
-    actual = @enigma.decrypt(encrypted[:encryption], encrypted[:key], "040895")
+    actual = @enigma.decrypt(encrypted[:encryption], "02715", encrypted[:date])
 
     assert_equal "hello world", actual[:decryption]
   end
@@ -79,5 +79,14 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "hello world", actual[:decryption]
     assert_equal todays_date, encrypted[:date]
+  end
+
+  def test_decrypting_a_message_with_no_given_date_uses_todays_date
+    # skip
+    encrypted = @enigma.encrypt("hello world")
+
+    actual = @enigma.decrypt(encrypted[:encryption], encrypted[:key])
+
+    assert_equal "hello world", actual[:decryption]
   end
 end
