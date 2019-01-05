@@ -62,7 +62,7 @@ class EnigmaTest < Minitest::Test
     # skip
     encrypted = @enigma.encrypt("hello world", "02715")
     todays_date = Date.today.strftime('%m%d%y')
-    
+
     actual = @enigma.decrypt(encrypted[:encryption], "02715", todays_date)
 
     assert_equal "hello world", actual[:decryption]
@@ -80,5 +80,28 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "hello world", actual[:decryption]
     assert_equal todays_date, encrypted[:date]
+  end
+
+  def test_it_can_crack_an_encryption
+    encrypted = @enigma.encrypt("hello world end")
+    message = encrypted[:encryption]
+    date = encrypted[:date]
+
+    expected = {decryption: "hello world end",
+                key: encrypted[:key],
+                date: date}
+
+    assert_equal expected, @enigma.crack(message, date)
+  end
+
+  def test_it_uses_todays_date_by_default_when_cracking
+    encrypted = @enigma.encrypt("hello world end")
+    message = encrypted[:encryption]
+
+    expected = {decryption: "hello world end",
+                key: encrypted[:key],
+                date: date}
+
+    assert_equal expected, @enigma.crack(message)
   end
 end
