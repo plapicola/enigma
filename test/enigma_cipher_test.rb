@@ -23,7 +23,7 @@ class EnigmaCipherTest < Minitest::Test
   end
 
   def test_it_can_generate_overall_shift
-    skip
+    # skip
     expected = [3, 27, 73, 20]
 
     assert_equal expected, @cipher.generate_shifts("02715", "040895")

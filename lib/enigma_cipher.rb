@@ -16,4 +16,12 @@ class EnigmaCipher < Cipher
     (squared_value % 10000).digits.reverse
   end
 
+  def generate_shifts(key, date)
+    keys = parse_keys(key)
+    offsets = generate_offsets(date)
+    keys.map.with_index do |key, index|
+      key + offsets[index]
+    end
+  end
+
 end
