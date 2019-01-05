@@ -1,4 +1,5 @@
 require_relative 'enigma_cipher'
+require_relative 'cracker'
 require 'date'
 
 class Enigma
@@ -18,6 +19,14 @@ class Enigma
     {key: key,
     date: date,
     decryption: @cipher.decode(message, key, date)}
+  end
+
+  def crack(message, date = today)
+    cracker = Cracker.new(date)
+    key = cracker.crack(message)
+    {date: date,
+     key: key,
+     decryption: @cipher.decode(message, key, date)}
   end
 
   def random_key
