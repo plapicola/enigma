@@ -11,5 +11,10 @@ class Enigma
     encryption: @cipher.encode(message, key, date)}
   end
 
+  def decrypt(message, key, date)
+    {key: key,
+    date: date,
+    decryption: @cipher.decode(message, key, date)}
+  end
 
 end
