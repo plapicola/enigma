@@ -44,7 +44,7 @@ class EnigmaCipherTest < Minitest::Test
   end
 
   def test_it_can_group_letters_by_cipher_shift
-    skip
+    # skip
     expected = {0 => ["h","o","r"],
                 1 => ["e"," ","l"],
                 2 => ["l", "w", "d"],
@@ -54,7 +54,7 @@ class EnigmaCipherTest < Minitest::Test
   end
 
   def test_it_can_reassemble_a_grouping_of_letters
-    skip
+    # skip
     grouping = {0 => ["h","o","r"],
                 1 => ["e"," ","l"],
                 2 => ["l", "w", "d"],

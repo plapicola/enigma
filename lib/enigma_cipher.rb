@@ -26,19 +26,24 @@ class EnigmaCipher < Cipher
 
   def encode(word, key, date)
     shifts = generate_shifts(key, date)
-    split_word = word.downcase.split("")
-    grouped_letters = split_word.group_by.with_index do |letter, index|
-      index % 4
-    end
+    grouped_letters = group_letters_by_shift(word)
     grouped_letters.each do |key, letters|
       grouped_letters[key] = super(letters.join(""), shifts[key])
     end
-    i = 0
+    reassemble_message(grouped_letters, word.length)
+  end
+
+  def group_letters_by_shift(word)
+    split_word = word.downcase.split("")
+    split_word.group_by.with_index do |letter, index|
+      index % 4
+    end
+  end
+
+  def reassemble_message(grouped_letters, message_size)
     result = ""
-    groups = grouped_letters.values
-    while (i < word.length)
-      result += groups[i % 4][i / 4]
-      i += 1
+    message_size.times.with_index do |index|
+      result += grouped_letters[index % 4][index / 4]
     end
     result
   end
