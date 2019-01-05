@@ -43,4 +43,24 @@ class EnigmaCipherTest < Minitest::Test
     assert_equal expected, @cipher.decode("keder ohulw", "02715", "040895")
   end
 
+  def test_it_can_group_letters_by_cipher_shift
+    skip
+    expected = {0 => ["h","o","r"],
+                1 => ["e"," ","l"],
+                2 => ["l", "w", "d"],
+                3 => ["l", "o"]}
+
+    assert_equal expected, @cipher.group_letters_by_shift("hello world")
+  end
+
+  def test_it_can_reassemble_a_grouping_of_letters
+    skip
+    grouping = {0 => ["h","o","r"],
+                1 => ["e"," ","l"],
+                2 => ["l", "w", "d"],
+                3 => ["l", "o"]}
+
+    assert_equal "hello world", @cipher.reassemble_message(grouping, 11)
+  end
+
 end
