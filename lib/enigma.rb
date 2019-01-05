@@ -8,7 +8,7 @@ class Enigma
     @cipher = EnigmaCipher.new
   end
 
-  def encrypt(message, key = random_key, date)
+  def encrypt(message, key = random_key, date = today)
     {key: key,
     date: date,
     encryption: @cipher.encode(message, key, date)}
@@ -24,6 +24,10 @@ class Enigma
     key = ""
     5.times {key += Random.rand(10).to_s}
     key
+  end
+
+  def today
+    Date.today.strftime('%m%d%y')
   end
 
 end
