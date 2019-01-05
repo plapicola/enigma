@@ -13,7 +13,9 @@ class EnigmaCipher < Cipher
 
   def generate_offsets(date)
     squared_value = date.to_i * date.to_i
-    (squared_value % 10000).digits.reverse
+    offsets = (squared_value % 10000).digits
+    offsets << 0 until offsets.length == 4
+    offsets.reverse
   end
 
   def generate_shifts(cipher_key, date)
@@ -25,6 +27,15 @@ class EnigmaCipher < Cipher
   end
 
   def encode(word, key, date)
+    shifts = generate_shifts(key, date)
+    grouped_letters = group_letters_by_shift(word)
+    grouped_letters.each do |shift, letters|
+      grouped_letters[shift] = super(letters.join(""), shifts[shift])
+    end
+    reassemble_message(grouped_letters, word.length)
+  end
+
+  def decode(word, key, date)
     shifts = generate_shifts(key, date)
     grouped_letters = group_letters_by_shift(word)
     grouped_letters.each do |shift, letters|
@@ -47,5 +58,4 @@ class EnigmaCipher < Cipher
     end
     result
   end
-
 end

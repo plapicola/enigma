@@ -20,7 +20,8 @@ class Cipher
   end
 
   def decode(word, offset)
-    encode(word, offset * -1)
+    Cipher.instance_method(:encode).bind(self).call(word, offset * -1)
+    # encode(word, offset * -1)
   end
 
 end

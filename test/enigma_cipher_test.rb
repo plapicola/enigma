@@ -18,8 +18,10 @@ class EnigmaCipherTest < Minitest::Test
   def test_it_generate_offsets_from_date
     # skip
     expected = [1, 0, 2, 5]
+    zeroes = [0, 0, 0, 0]
 
     assert_equal expected, @cipher.generate_offsets("040895")
+    assert_equal zeroes, @cipher.generate_offsets("010100")
   end
 
   def test_it_can_generate_overall_shift
@@ -37,10 +39,11 @@ class EnigmaCipherTest < Minitest::Test
   end
 
   def test_it_can_decrypt_a_message
-    skip
+    # skip
     expected = "hello world"
 
     assert_equal expected, @cipher.decode("keder ohulw", "02715", "040895")
+    assert_equal "test", @cipher.decode("test", "00000", "000000")
   end
 
   def test_it_can_group_letters_by_cipher_shift
