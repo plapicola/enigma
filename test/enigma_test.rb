@@ -61,8 +61,9 @@ class EnigmaTest < Minitest::Test
   def test_encrypting_a_message_with_no_given_date_uses_todays_date
     # skip
     encrypted = @enigma.encrypt("hello world", "02715")
-
-    actual = @enigma.decrypt(encrypted[:encryption], "02715", encrypted[:date])
+    todays_date = Date.today.strftime('%m%d%y')
+    
+    actual = @enigma.decrypt(encrypted[:encryption], "02715", todays_date)
 
     assert_equal "hello world", actual[:decryption]
   end
@@ -79,14 +80,5 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "hello world", actual[:decryption]
     assert_equal todays_date, encrypted[:date]
-  end
-
-  def test_decrypting_a_message_with_no_given_date_uses_todays_date
-    # skip
-    encrypted = @enigma.encrypt("hello world")
-
-    actual = @enigma.decrypt(encrypted[:encryption], encrypted[:key])
-
-    assert_equal "hello world", actual[:decryption]
   end
 end
