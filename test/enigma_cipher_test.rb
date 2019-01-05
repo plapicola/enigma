@@ -30,7 +30,7 @@ class EnigmaCipherTest < Minitest::Test
   end
 
   def test_it_can_encrypt_a_message
-    skip
+    # skip
     expected = "keder ohulw"
 
     assert_equal expected, @cipher.encode("hello world", "02715", "040895")

@@ -24,4 +24,23 @@ class EnigmaCipher < Cipher
     end
   end
 
+  def encode(word, key, date)
+    shifts = generate_shifts(key, date)
+    split_word = word.downcase.split("")
+    grouped_letters = split_word.group_by.with_index do |letter, index|
+      index % 4
+    end
+    grouped_letters.each do |key, letters|
+      grouped_letters[key] = super(letters.join(""), shifts[key])
+    end
+    i = 0
+    result = ""
+    groups = grouped_letters.values
+    while (i < word.length)
+      result += groups[i % 4][i / 4]
+      i += 1
+    end
+    result
+  end
+
 end
