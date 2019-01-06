@@ -7,6 +7,6 @@ enigma = Enigma.new
 
 cracked_message = enigma.crack(message, ARGV[2])
 destination.write(cracked_message[:decryption])
-output = "Created '#{ARGV[1]}' with the cracked key #{cracked_message[:key]} "
-output += "and date #{ARGV[2]}."
-puts output
+
+puts "Created '#{ARGV[1]}' with the cracked key #{cracked_message[:key]} " +
+     "and date #{ARGV[2]}."
