@@ -11,13 +11,15 @@ class Enigma
   end
 
   def encrypt(message, key = nil, date = today)
-    {key: key,
+    key = make_key(key)
+    {key: key.key,
     date: date,
     encryption: @cipher.encode(message, key, date)}
   end
 
   def decrypt(message, key, date = today)
-    {key: key,
+    key = make_key(key)
+    {key: key.key,
     date: date,
     decryption: @cipher.decode(message, key, date)}
   end
@@ -26,7 +28,7 @@ class Enigma
     cracker = Cracker.new(date)
     cracker.crack(message)
     {date: date,
-     key: cracker.key,
+     key: cracker.key.key,
      decryption: @cipher.decode(message, cracker.key, date)}
   end
 
