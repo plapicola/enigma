@@ -33,11 +33,8 @@ class Enigma
   end
 
   def make_key(value)
-    if value
-      Key.new(value)
-    else
-      Key.random
-    end
+    return Key.new(value) if value
+    Key.random
   end
 
   def today
