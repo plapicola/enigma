@@ -23,4 +23,10 @@ class Key
     keys.map {|key| key.join("").to_i}
   end
 
+  def generate_offsets(date)
+    offsets = ((date.to_i ** 2) % 10000).digits
+    offsets << 0 until offsets.length == 4
+    offsets.reverse
+  end
+
 end

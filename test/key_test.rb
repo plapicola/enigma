@@ -37,7 +37,7 @@ class KeyTest < Minitest::Test
 
   def test_it_can_generate_date_offsets
     # skip
-    assert_equal [1, 0, 2, 5], @key.generate_offsets
+    assert_equal [1, 0, 2, 5], @key.generate_offsets("040895")
   end
 
   def test_it_can_return_shifts_if_given_a_date
