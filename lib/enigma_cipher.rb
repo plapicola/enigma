@@ -7,7 +7,7 @@ class EnigmaCipher < Cipher
   end
 
   def encode(word, key, date)
-    shift(word, key.generate_shifts(date))
+    shift(word, key.shifts(date))
   end
 
   def shift(word, shifts)
@@ -17,7 +17,7 @@ class EnigmaCipher < Cipher
   end
 
   def decode(word, key, date)
-    shifts = key.generate_shifts(date).map {|amount| -amount}
+    shifts = key.shifts(date).map {|amount| -amount}
     shift(word, shifts)
   end
 end
