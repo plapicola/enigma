@@ -39,11 +39,8 @@ class EnigmaCipher < Cipher
 
   def decode(word, key, date)
     shifts = generate_shifts(key, date)
-    grouped_letters = group_letters_by_shift(word)
-    grouped_letters.each do |shift, letters|
-      grouped_letters[shift] = super(letters.join(""), shifts[shift])
-    end
-    reassemble_message(grouped_letters, word.length)
+    shifts = shifts.map {|amount| -amount}
+    shift(word, shifts)
   end
 
   def group_letters_by_shift(word)
