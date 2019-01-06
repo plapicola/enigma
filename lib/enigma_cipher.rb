@@ -42,19 +42,4 @@ class EnigmaCipher < Cipher
     shifts = shifts.map {|amount| -amount}
     shift(word, shifts)
   end
-
-  def group_letters_by_shift(word)
-    split_word = word.downcase.split("")
-    split_word.group_by.with_index do |letter, index|
-      index % 4
-    end
-  end
-
-  def reassemble_message(grouped_letters, message_size)
-    result = ""
-    message_size.times.with_index do |index|
-      result += grouped_letters[index % 4][index / 4]
-    end
-    result
-  end
 end
