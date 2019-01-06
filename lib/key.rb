@@ -18,4 +18,9 @@ class Key
     @key = new_key.reverse.join("")
   end
 
+  def parse_keys
+    keys = @key.split("").each_cons(2)
+    keys.map {|key| key.join("").to_i}
+  end
+
 end

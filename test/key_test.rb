@@ -31,7 +31,7 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_return_the_array_of_keys
-    skip
+    # skip
     assert_equal [2, 27, 71, 15], @key.parse_keys
   end
 
