@@ -24,7 +24,9 @@ class CrackerTest < Minitest::Test
   end
 
   def test_it_can_crack_a_key
-    assert_equal "02715", @cracker.crack("keder ohulwthnw")
+    @cracker.crack("keder ohulwthnw")
+
+    assert_equal "02715", @cracker.key
   end
 
 end
