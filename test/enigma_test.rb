@@ -14,11 +14,9 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_generate_a_key
     # skip
-    key = @enigma.random_key
+    key = @enigma.make_key("02715")
 
-    assert_instance_of String, key
-    assert_equal 5, key.length
-    refute_equal 0, key.to_i
+    assert_instance_of Key, key
   end
 
   def test_it_can_determine_todays_date
