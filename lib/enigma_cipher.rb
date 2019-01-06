@@ -28,11 +28,13 @@ class EnigmaCipher < Cipher
 
   def encode(word, key, date)
     shifts = generate_shifts(key, date)
-    grouped_letters = group_letters_by_shift(word)
-    grouped_letters.each do |shift, letters|
-      grouped_letters[shift] = super(letters.join(""), shifts[shift])
-    end
-    reassemble_message(grouped_letters, word.length)
+    shift(word, shifts)
+  end
+
+  def shift(word, shifts)
+    word.split("").map.with_index do |letter, index|
+      super(letter, shifts[index % 4])
+    end.join
   end
 
   def decode(word, key, date)
