@@ -3,47 +3,30 @@ require_relative 'test_helper'
 class EnigmaCipherTest < Minitest::Test
 
   def setup
+    @mock_1 = mock("02715")
+    @mock_2 = mock("00000")
+    @mock_1.stubs(key: "02715", shifts: [3, 27, 73, 20])
+    @mock_2.stubs(key: "00000", shifts: [0, 0, 0, 0])
     @cipher = EnigmaCipher.new
   end
 
-  def test_it_can_parse_keys
-    # skip
-    expected_1 = [2, 27, 71, 15]
-    expected_2 = [0, 0, 1, 10]
-
-    assert_equal expected_1, @cipher.parse_keys("02715")
-    assert_equal expected_2, @cipher.parse_keys("00010")
-  end
-
-  def test_it_generate_offsets_from_date
-    # skip
-    expected = [1, 0, 2, 5]
-    zeroes = [0, 0, 0, 0]
-
-    assert_equal expected, @cipher.generate_offsets("040895")
-    assert_equal zeroes, @cipher.generate_offsets("010100")
-  end
-
-  def test_it_can_generate_overall_shift
-    # skip
-    expected = [3, 27, 73, 20]
-
-    assert_equal expected, @cipher.generate_shifts("02715", "040895")
+  def test_it_can_shift_letters_in_a_word
+    assert_equal "keder ohulw", @cipher.shift("hello world", [3, 27, 73, 20])
   end
 
   def test_it_can_encrypt_a_message
     # skip
     expected = "keder ohulw"
 
-    assert_equal expected, @cipher.encode("hello world", "02715", "040895")
+    assert_equal expected, @cipher.encode("hello world", @mock_1, "040895")
   end
 
   def test_it_can_decrypt_a_message
     # skip
     expected = "hello world"
 
-    assert_equal expected, @cipher.decode("keder ohulw", "02715", "040895")
-    assert_equal "test", @cipher.decode("test", "00000", "000000")
+    assert_equal expected, @cipher.decode("keder ohulw", @mock_1, "040895")
+    assert_equal "test", @cipher.decode("test", @mock_2, "000000")
   end
 
 end

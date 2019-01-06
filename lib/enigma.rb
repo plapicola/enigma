@@ -1,5 +1,6 @@
 require_relative 'enigma_cipher'
 require_relative 'cracker'
+require_relative 'key'
 require 'date'
 
 class Enigma
@@ -9,14 +10,16 @@ class Enigma
     @cipher = EnigmaCipher.new
   end
 
-  def encrypt(message, key = random_key, date = today)
-    {key: key,
+  def encrypt(message, key = nil, date = today)
+    key = make_key(key)
+    {key: key.key,
     date: date,
     encryption: @cipher.encode(message, key, date)}
   end
 
   def decrypt(message, key, date = today)
-    {key: key,
+    key = make_key(key)
+    {key: key.key,
     date: date,
     decryption: @cipher.decode(message, key, date)}
   end
@@ -25,14 +28,16 @@ class Enigma
     cracker = Cracker.new(date)
     cracker.crack(message)
     {date: date,
-     key: cracker.key,
+     key: cracker.key.key,
      decryption: @cipher.decode(message, cracker.key, date)}
   end
 
-  def random_key
-    key = ""
-    5.times {key += Random.rand(10).to_s}
-    key
+  def make_key(value)
+    if value
+      Key.new(value)
+    else
+      Key.random
+    end
   end
 
   def today

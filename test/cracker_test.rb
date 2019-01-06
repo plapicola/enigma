@@ -15,18 +15,13 @@ class CrackerTest < Minitest::Test
   end
 
   def test_key_is_zeroes_by_default
-    assert_equal "00000", @cracker.key
-  end
-
-  def test_it_can_generate_the_next_sequential_key
-    assert_equal "00002", @cracker.next_key("00001")
-    assert_equal "10000", @cracker.next_key("09999")
+    assert_equal "00000", @cracker.key.key
   end
 
   def test_it_can_crack_a_key
     @cracker.crack("keder ohulwthnw")
 
-    assert_equal "02715", @cracker.key
+    assert_equal "02715", @cracker.key.key
   end
 
 end
