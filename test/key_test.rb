@@ -17,11 +17,11 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_generate_a_random_key
-    skip
+    # skip
     random_key = Key.random
 
     assert_instance_of Key, random_key
-    assert_equal 5, random_key.length
+    assert_equal 5, random_key.key.length
   end
 
   def test_it_can_return_the_next_sequential_key
