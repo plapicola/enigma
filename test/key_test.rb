@@ -7,12 +7,12 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_exists
-    skip
+    # skip
     assert_instance_of Key, @key
   end
 
   def test_it_can_return_the_key_as_a_string
-    skip
+    # skip
     assert_equal "02715", @key.key
   end
 
