@@ -23,10 +23,10 @@ class Enigma
 
   def crack(message, date = today)
     cracker = Cracker.new(date)
-    key = cracker.crack(message)
+    cracker.crack(message)
     {date: date,
-     key: key,
-     decryption: @cipher.decode(message, key, date)}
+     key: cracker.key,
+     decryption: @cipher.decode(message, cracker.key, date)}
   end
 
   def random_key
