@@ -85,21 +85,19 @@ class EnigmaTest < Minitest::Test
     message = encrypted[:encryption]
     date = encrypted[:date]
 
-    expected = {decryption: "hello world end",
-                key: encrypted[:key],
-                date: date}
+    actual = @enigma.crack(message, date)
 
-    assert_equal expected, @enigma.crack(message, date)
+    assert_instance_of Hash, actual
+    assert_equal "hello world end", actual[:decryption]
   end
 
   def test_it_uses_todays_date_by_default_when_cracking
     encrypted = @enigma.encrypt("hello world end")
     message = encrypted[:encryption]
 
-    expected = {decryption: "hello world end",
-                key: encrypted[:key],
-                date: encrypted[:date]}
+    actual = @enigma.crack(message)
 
-    assert_equal expected, @enigma.crack(message)
+    assert_instance_of Hash, actual
+    assert_equal "hello world end", actual[:decryption]
   end
 end
