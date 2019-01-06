@@ -6,7 +6,7 @@ class Cipher
 
   def shift(word, offset)
     shifted_set = @character_set.rotate(offset)
-    word.downcase.split.map do |character|
+    word.downcase.split("").map do |character|
       determine_character(character, shifted_set)
     end.join
   end
