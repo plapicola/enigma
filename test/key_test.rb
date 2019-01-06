@@ -25,7 +25,7 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_return_the_next_sequential_key
-    skip
+    # skip
     assert_equal "02716", @key.next_key
     assert_equal "02717", @key.next_key
   end
