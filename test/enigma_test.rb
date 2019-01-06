@@ -64,9 +64,10 @@ class EnigmaTest < Minitest::Test
     actual = @enigma.decrypt(encrypted[:encryption], "02715", todays_date)
 
     assert_equal "hello world", actual[:decryption]
+    assert_equal todays_date, actual[:date]
   end
 
-  def test_encrypting__without_key_or_date_uses_random_key_and_current_date
+  def test_encrypting_without_key_or_date_uses_random_key_and_current_date
     # skip
     encrypted = @enigma.encrypt("hello world")
     message = encrypted[:encryption]
@@ -94,10 +95,12 @@ class EnigmaTest < Minitest::Test
   def test_it_uses_todays_date_by_default_when_cracking
     encrypted = @enigma.encrypt("hello world end")
     message = encrypted[:encryption]
+    todays_date = Date.today.strftime('%m%d%y')
 
     actual = @enigma.crack(message)
 
     assert_instance_of Hash, actual
     assert_equal "hello world end", actual[:decryption]
+    assert_equal todays_date, actual[:date]
   end
 end
