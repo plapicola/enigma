@@ -10,6 +10,10 @@ class EnigmaCipherTest < Minitest::Test
     @cipher = EnigmaCipher.new
   end
 
+  def test_it_can_shift_letters_in_a_word
+    assert_equal "keder ohulw", @cipher.shift("hello world", [3, 27, 73, 20])
+  end
+
   def test_it_can_encrypt_a_message
     # skip
     expected = "keder ohulw"
