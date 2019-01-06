@@ -100,7 +100,7 @@ class EnigmaTest < Minitest::Test
 
     expected = {decryption: "hello world end",
                 key: encrypted[:key],
-                date: date}
+                date: encrypted[:date]}
 
     assert_equal expected, @enigma.crack(message)
   end
