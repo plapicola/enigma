@@ -41,7 +41,7 @@ class KeyTest < Minitest::Test
   end
 
   def test_it_can_return_shifts_if_given_a_date
-    skip
+    # skip
     assert_equal [3, 27, 73, 20], @key.shifts("040895")
   end
 

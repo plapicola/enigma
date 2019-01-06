@@ -29,4 +29,11 @@ class Key
     offsets.reverse
   end
 
+  def shifts(date)
+    offsets = generate_offsets(date)
+    parse_keys.map.with_index do |key, index|
+      key + offsets[index]
+    end
+  end
+
 end
