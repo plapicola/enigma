@@ -32,6 +32,9 @@ ruby ./lib/crack.rb <Source> <Destination> <Date>
 
 ## Self Assessment
 Functionality: 4
+
 OOP: 4
+
 TDD: 4
+
 Version Control: 4
